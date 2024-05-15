@@ -15,7 +15,8 @@ const VideoOwnerInfo = ({owner, subscribers, views}) => {
       />
       <div>
         <p className="text-lg font-[700]">{owner.username}</p>
-        {views ? ( <p className="text-sm">{`${views} views`}</p>) : <p className="text-sm">{`${subscribers} subscribers`}</p>}
+        {views && <p className="text-sm text-end">{`${views} views`}</p> }
+        {subscribers && <p className="text-sm">{`${subscribers} subscribers`}</p>}
       </div>
     </div>
   );

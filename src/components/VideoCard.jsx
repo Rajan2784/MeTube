@@ -41,10 +41,10 @@ const VideoCard = ({ video }) => {
             {formattedDuration}
           </h1>
         </div>
-        <div className="">
+        <div className="w-full">
           <h1 className="text-xl font-bold px-1">{video?.title}</h1>
 
-          <div className="p-1 flex justify-between items-baseline gap-2 w-full">
+          <div className="p-1 flex justify-between items-baseline w-full">
             <VideoOwnerInfo owner={video.owner} views={views} />
             <p className="text-sm">{createdAtDate} ago</p>
           </div>

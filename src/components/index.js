@@ -7,6 +7,8 @@ import LikedVideo from "../pages/LikedVideo"
 import Profile from "../pages/Profile"
 import Subscription from "../pages/Subscription"
 import UploadVideo from "../pages/UploadVideo"
+import SideBar from "./Header/SideBar"
+import Header from "./Header/Header"
 
 export {
     Login,
@@ -17,5 +19,7 @@ export {
     LikedVideo,
     Profile,
     Subscription,
-    UploadVideo
+    UploadVideo,
+    SideBar,
+    Header
 }

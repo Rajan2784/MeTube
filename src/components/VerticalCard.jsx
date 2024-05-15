@@ -25,8 +25,8 @@ const VerticalCard = ({ video }) => {
   }
   
   return (
-    <div className="grid grid-cols-3 gap-3 cursor-pointer mb-4 w-full">
-      <div className="col-span-1 h-32 relative">
+    <div className="grid grid-cols-5 gap-3 cursor-pointer mb-4 w-full">
+      <div className="col-span-2 h-32 relative">
           <img
             src={video?.thumbnail}
             className="w-72 h-full rounded-md"
@@ -36,7 +36,7 @@ const VerticalCard = ({ video }) => {
             {formattedDuration}
           </h1>
       </div>
-      <div className="col-span-2 flex flex-col">
+      <div className="col-span-3 flex flex-col">
         <h1 className="font-bold">{video.title}</h1>
         <p className="text-md">{video.owner?.username} <span>• {views} views</span> </p>
         <p className="truncate w-[80%] text-wrap text-sm mt-2">{truncateText(video.description, 90)}</p>

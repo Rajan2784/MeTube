@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { GoHome } from "react-icons/go";
@@ -7,13 +7,15 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { MdOutlineSubscriptions } from "react-icons/md";
 import { RiPlayListAddLine } from "react-icons/ri";
 import { AiOutlineLike } from "react-icons/ai";
+import { ToggleContext } from "../../context/Toggle";
 
 const SideBar = () => {
   const status = useSelector((state) => state.auth.status);
   const location = useLocation();
+  const {showSideBar} = useContext(ToggleContext);
   const user = useSelector((state) => state.auth.userData);
   return (
-    <div className="p-4 bg-slate-100 h-full">
+    <div className="p-4 bg-slate-100 dark:bg-zinc-900 h-full">
       {status && (
         <aside className="flex flex-col gap-2 w-full">
           <div className="flex flex-col gap-1">
@@ -23,24 +25,24 @@ const SideBar = () => {
                 className={`${location.pathname === "/" ? "active" : "link"}`}
               >
                 <GoHome className="link p-0" fontSize={24} />
-                <p>Home</p>
+                <p className={`${showSideBar ? "lg:hidden" : "lg:visible"}`}>Home</p>
               </Link>
             </div>
             <div>
               <Link
                 className={`${
-                  location.pathname === "/subscription" ? "active" : "link"
+                  location.pathname === "/subscription" ? "active dark:link-dark" : "link"
                 }`}
                 to={"/subscription"}
               >
                 <MdOutlineSubscriptions className="link p-0" fontSize={24} />
-                <p>Subscription</p>
+                <p className={`${showSideBar ? "lg:hidden" : "lg:visible"}`}>Subscription</p>
               </Link>
             </div>
           </div>
           <hr className="border border-red-200 my-1" />
           <div className="flex flex-col gap-1">
-            <h1 className="text-xl">You</h1>
+            <h1 className="text-xl dark:text-white">You</h1>
             <div>
               <Link
                 to={"/history"}
@@ -49,7 +51,7 @@ const SideBar = () => {
                 }`}
               >
                 <GoHistory className="link p-0" fontSize={24} />
-                <p>History</p>
+                <p className={`${showSideBar ? "lg:hidden" : "lg:visible"}`}>History</p>
               </Link>
             </div>
 
@@ -61,7 +63,7 @@ const SideBar = () => {
                 }`}
               >
                 <RiPlayListAddLine className="link p-0" fontSize={24} />
-                <p>Playlists</p>
+                <p className={`${showSideBar ? "lg:hidden" : "lg:visible"}`}>Playlists</p>
               </Link>
             </div>
 
@@ -73,7 +75,7 @@ const SideBar = () => {
                 }`}
               >
                 <AiOutlinePlus className="link p-0" fontSize={24} />
-                <p>Add Video</p>
+                <p className={`${showSideBar ? "lg:hidden" : "lg:visible"}`}>Add Video</p>
               </Link>
             </div>
 
@@ -85,7 +87,7 @@ const SideBar = () => {
                 }`}
               >
                 <AiOutlineLike className="link p-0" fontSize={24} />
-                <p>Liked videos</p>
+                <p className={`${showSideBar ? "lg:hidden" : "lg:visible"}`}>Liked videos</p>
               </Link>
             </div>
           </div>
@@ -100,7 +102,7 @@ const SideBar = () => {
               <div className="size-7 rounded-full">
                 <img src={user?.avatar} className="rounded-full h-full w-full bg-cover" alt="" />
               </div>
-              <p>Profile</p>
+              <p className={`${showSideBar ? "lg:hidden" : "lg:visible"}`}>Profile</p>
             </Link>
           </div>
         </aside>

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 *{
   font-family: sans-serif;
 }
@@ -12,12 +16,13 @@
   }
 
   .link {
-    @apply flex items-center gap-2 p-2 hover:bg-red-100 rounded-md hover:text-[#ff0012];
+    @apply flex items-center gap-2 p-2 dark:text-white dark:hover:bg-white/10 dark:hover:text-white hover:bg-red-100 rounded-md hover:text-[#ff0012];
   }
 
   .active{
-    @apply flex items-center gap-2 p-2 bg-red-100 rounded-md text-[#ff0012];
+    @apply flex items-center gap-2 p-2 bg-red-100 rounded-md dark:bg-white/15 dark:text-white text-[#ff0012];
   }
+
 }
 
 /* HTML: <div class="loader"></div> */

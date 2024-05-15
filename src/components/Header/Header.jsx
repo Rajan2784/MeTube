@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { GoHomeFill } from "react-icons/go";
 import { FaHistory } from "react-icons/fa";
 import { AiOutlinePlus } from "react-icons/ai";
@@ -8,17 +8,20 @@ import { CgMenuLeftAlt } from "react-icons/cg";
 import { useSelector } from "react-redux";
 import SearchBar from "../SearchBar";
 import ThemeToggle from "../ThemeToggle";
+import { ToggleContext } from "../../context/Toggle";
 
 const Header = () => {
   const status = useSelector((state) => state.auth.status);
   const userData = useSelector((state) => state.auth.userData);
+  const {onSideBarToggle,showSideBar} = useContext(ToggleContext)
   return (
     <header className="h-full w-full z-10">
-      <div className="flex items-center justify-between gap-2 p-1 sm:p-3 bg-slate-100">
+      <div className={`flex items-center justify-between gap-2 p-1 sm:p-3 bg-slate-100 dark:bg-zinc-900`}>
         <div className="flex gap-2">
           <CgMenuLeftAlt
             fontSize={28}
-            className="link p-0 cursor-pointer hidden sm:block"
+            className={`${showSideBar ? "link" : ""} dark:text-white p-0 cursor-pointer hidden sm:block`}
+            onClick={() => onSideBarToggle()}
           />
           <div className="flex items-baseline">
             <img src="/logo.png" width={28} alt="" />
@@ -35,7 +38,7 @@ const Header = () => {
 
       {/* This is for mobile devices only */}
 
-      <div className="sm:hidden md:hidden lg:hidden visible bg-slate-50 fixed bottom-0 flex w-full p-2 items-center justify-evenly">
+      <div className="sm:hidden md:hidden lg:hidden visible bg-slate-50 dark:bg-zinc-900 fixed bottom-0 flex w-full p-2 items-center justify-evenly">
         {status && (
           <>
             <div>

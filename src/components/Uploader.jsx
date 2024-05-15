@@ -146,20 +146,29 @@ function VideoUploadForm() {
 
 
       <div className="mt-4">
-        <label className="block text-gray-700 font-bold mb-2">Title:</label>
+        <label className="block text-gray-700 font-bold mb-2 dark:text-gray-400">Title:</label>
         <input
           type="text"
           {...register("title", { required: true })}
-          className="border rounded-lg px-3 py-2 w-full"
+          placeholder="Video Title Here ..."
+          className="border rounded-lg px-3 py-2 w-full dark:bg-transparent"
         />
       </div>
       <div className="mt-4">
-        <label className="block text-gray-700 font-bold mb-2">
+        <label className="block text-gray-700 font-bold mb-2 dark:text-gray-400">
           Description:
         </label>
         <textarea
           {...register("description", { required: true })}
-          className="border rounded-lg px-3 py-2 w-full"
+          rows={10}
+          placeholder="Description of your Videos .....
+
+
+
+            -#tags
+            -links
+          "
+          className="border rounded-lg px-3 py-2 w-full dark:bg-transparent"
         />
       </div>
       {uploadPercentage > 0 && uploadPercentage < 100 && (

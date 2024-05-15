@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { CiLight } from "react-icons/ci";
 import { MdDarkMode } from "react-icons/md";
+import { ToggleContext } from "../context/Toggle";
 
 const ThemeToggle = () => {
   // State to track the current theme mode
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  // Function to toggle the theme mode
-  const toggleTheme = () => {
-    setIsDarkMode((prevMode) => !prevMode);
-    // You can also save the current theme mode to local storage here
-  };
-
+  const { dark, onThemeToggle } = useContext(ToggleContext);
   return (
     <button
-      className="px-2 py-2 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none"
-      onClick={toggleTheme}
+      className="px-2 py-2 rounded-md focus:outline-none"
+      onClick={() => onThemeToggle()}
     >
-      {isDarkMode ? <CiLight className="text-xl" /> : <MdDarkMode className="text-xl" />}
+      {dark === "light" ? (
+        // <CiLight className="text-xl " />
+        <p className="text-2xl">🌞</p>
+      ) : (
+        // <MdDarkMode className="text-xl text-white" />
+        <p className="text-2xl">🌙</p>
+      )}
     </button>
   );
 };
