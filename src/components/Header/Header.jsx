@@ -90,9 +90,9 @@ const Header = () => {
             </div>
             <div>
               <Link
-                to={"/profile"}
+                to={`/my-profile/${userData.username}`}
                 className={`flex-col gap-0 p-1 ${
-                  location.pathname === "/profile" ? "active" : "link"
+                  location.pathname === `/my-profile/${userData.username}` ? "active" : "link"
                 }`}
               >
                 <div className={`size-6 rounded-full border ${location.pathname === "/profile" ? "border-[#ff0012]" : "border-[#fff]"}`}>

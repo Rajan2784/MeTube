@@ -11,7 +11,7 @@ import { ToggleContext } from "../../context/Toggle";
 const Home = () => {
   const { status } = useSelector((state) => state.auth);
   const navigate = useNavigate();
-  const {showSideBar} = useContext(ToggleContext)
+  const { showSideBar } = useContext(ToggleContext);
   const [loading, setLoading] = useState(false);
   const [videos, setVideos] = useState([]);
   const [data, setData] = useState(null);
@@ -58,27 +58,37 @@ const Home = () => {
       {loading ? (
         <Loader />
       ) : status === true ? (
-        <div className="mb-10">
-          <InfiniteScroll
-            className={`w-full grid ${showSideBar ? "lg:grid-cols-4  gap-0" : "lg:grid-cols-3  gap-1"}  md:grid-cols-2`}
-            dataLength={videos.length}
-            next={getNextVideos}
-            hasMore={data?.hasNextPage}
-            loader={<Loader />}
-          >
-            {videos.map((video) => (
-              <VideoCard video={video} key={video._id} />
-            ))}
-          </InfiniteScroll>
-          {videos.length >= data?.totalDocs ? (
-            <div className="flex flex-col justify-center items-center">
-              <img src="/check.png" width={48} height={48} alt="check" />
-              <p className="text-lg font-bold font-mono">Got all videos</p>
+        videos?.length === 0 ? (
+          <h1>NO videos found</h1>
+        ) : (
+          videos && (
+            <div className="mb-10">
+              <InfiniteScroll
+                className={`w-full grid ${
+                  showSideBar
+                    ? "lg:grid-cols-4  gap-0"
+                    : "lg:grid-cols-3  gap-1"
+                }  md:grid-cols-2`}
+                dataLength={videos?.length}
+                next={getNextVideos}
+                hasMore={data?.hasNextPage}
+                loader={<Loader />}
+              >
+                {videos.map((video) => (
+                  <VideoCard video={video} key={video._id} />
+                ))}
+              </InfiniteScroll>
+              {videos.length >= data?.totalDocs ? (
+                <div className="flex flex-col justify-center items-center">
+                  <img src="/check.png" width={48} height={48} alt="check" />
+                  <p className="text-lg font-bold font-mono">Got all videos</p>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
-          ) : (
-            ""
-          )}
-        </div>
+          )
+        )
       ) : (
         <div className="flex items-center justify-center h-svh flex-col">
           <h1>Please Login to see the videos</h1>

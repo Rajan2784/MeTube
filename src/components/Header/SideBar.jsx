@@ -5,7 +5,7 @@ import { GoHome } from "react-icons/go";
 import { GoHistory } from "react-icons/go";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdOutlineSubscriptions } from "react-icons/md";
-import { RiPlayListAddLine } from "react-icons/ri";
+import { RxVideo } from "react-icons/rx";
 import { AiOutlineLike } from "react-icons/ai";
 import { ToggleContext } from "../../context/Toggle";
 
@@ -57,13 +57,13 @@ const SideBar = () => {
 
             <div>
               <Link
-                to={"/playlist"}
+                to={"/myvideos"}
                 className={`${
-                  location.pathname === "/playlist" ? "active" : "link"
+                  location.pathname === "/myvideos" ? "active" : "link"
                 }`}
               >
-                <RiPlayListAddLine className="link p-0" fontSize={24} />
-                <p className={`${showSideBar ? "lg:hidden" : "lg:visible"}`}>Playlists</p>
+                <RxVideo className="link p-0" fontSize={24} />
+                <p className={`${showSideBar ? "lg:hidden" : "lg:visible"}`}>My Videos</p>
               </Link>
             </div>
 
@@ -94,9 +94,9 @@ const SideBar = () => {
 
           <div>
             <Link
-              to={`/profile/${user.username}`}
+              to={`/my-profile/${user.username}`}
               className={`${
-                location.pathname === `/profile/${user.username}` ? "active" : "link"
+                location.pathname === `/my-profile/${user.username}` ? "active" : "link"
               }`}
             >
               <div className="size-7 rounded-full">

@@ -12,10 +12,11 @@ import {
   History,
   LikedVideo,
   Login,
-  PlayList,
+  MyVideos,
   Profile,
   SignUp,
   Subscription,
+  MyProfilePage,
 } from "./components/index.js";
 import VideoPlay from "./components/VideoPlay.jsx";
 
@@ -77,6 +78,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/my-profile/:username",
+        element: (
+          <AuthLayout authentication>
+            <MyProfilePage />
+          </AuthLayout>
+        ),
+      },
+      {
         path: "/liked-videos",
         element: (
           <AuthLayout authentication>
@@ -85,10 +94,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/playlist",
+        path: "/myvideos",
         element: (
           <AuthLayout authentication>
-            <PlayList />
+            <MyVideos />
           </AuthLayout>
         ),
       },
