@@ -94,9 +94,9 @@ const SideBar = () => {
 
           <div>
             <Link
-              to={"/profile"}
+              to={`/profile/${user.username}`}
               className={`${
-                location.pathname === "/profile" ? "active" : "link"
+                location.pathname === `/profile/${user.username}` ? "active" : "link"
               }`}
             >
               <div className="size-7 rounded-full">

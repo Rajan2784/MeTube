@@ -31,11 +31,16 @@ const History = () => {
       ) : (
         <div className="mt-5 ml-2 mb-6">
           <h1 className="text-xl font-bold py-2">Watched Videos: </h1>
-          <div className="w-full pl-2 flex items-center justify-center sm:justify-normal lg:justify-start sm:gap-2 flex-wrap">
-            {videos.map((vid) => (
-              // <VideoCard key={vid._id} video={vid} />
-              <VerticalCard key={vid._id} video={vid} />
-            ))}
+          <div className="w-full grid grid-cols-10">
+            <div className="col-span-5">
+              {videos.map((vid) => (
+                // <VideoCard key={vid._id} video={vid} />
+                <VerticalCard key={vid._id} video={vid} />
+              ))}
+            </div>
+            <div className="col-span-5">
+              Manage the history of user
+            </div>
           </div>
         </div>
       )}

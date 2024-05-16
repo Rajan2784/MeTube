@@ -46,6 +46,14 @@ const Profile = () => {
 
   const handleSubscribe = async () => {
     try {
+      setUserChannel((prevUserChannel) => ({
+        ...prevUserChannel,
+        isSubscribed: !prevUserChannel.isSubscribed,
+        subscribersCount: prevUserChannel.isSubscribed
+          ? prevUserChannel.subscribersCount - 1
+          : prevUserChannel.subscribersCount + 1,
+      }));
+
       const response = await axios.post(
         `http://localhost:8000/api/v1/subscriptions/c/${userChannel?._id}`,
         {},
@@ -53,22 +61,15 @@ const Profile = () => {
           withCredentials: true,
         }
       );
-      if (response.data.data === "Subscription added") {
-        setUserChannel((prevUserChannel) => ({
-          ...prevUserChannel,
-          subscribersCount: prevUserChannel.subscribersCount + 1,
-          isSubscribed:prevUserChannel.isSubscribed=true
-        }));
-      } else {
-        setUserChannel((prevUserChannel) => ({
-          ...prevUserChannel,
-          subscribersCount: prevUserChannel.subscribersCount - 1,
-          isSubscribed:prevUserChannel.isSubscribed=false
-        }));
-      }
-      console.log(response.data);
     } catch (error) {
       console.error("Subscription error:", error);
+      setUserChannel((prevUserChannel) => ({
+        ...prevUserChannel,
+        isSubscribed: !prevUserChannel.isSubscribed,
+        subscribersCount: prevUserChannel.isSubscribed
+          ? prevUserChannel.subscribersCount + 1
+          : prevUserChannel.subscribersCount - 1,
+      }));
     }
   };
 
@@ -97,12 +98,13 @@ const Profile = () => {
                 </h1>
                 <p>@{userChannel?.username}</p>
                 <p>
-                  • {subscribers} subscribers <span>• {totalVideos} videos</span>
+                  • {subscribers} subscribers{" "}
+                  <span>• {totalVideos} videos</span>
                 </p>
                 {userChannel?.isSubscribed ? (
                   <button
-                  className="p-2 text-md sm:text-xl  rounded-md bg-[#898484]"
-                  onClick={handleSubscribe}
+                    className="p-2 text-md sm:text-xl  rounded-md bg-[#898484]"
+                    onClick={handleSubscribe}
                   >
                     Unsubscribe
                   </button>

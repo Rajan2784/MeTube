@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const VerticalCard = ({ video }) => {
+  const navigate = useNavigate()
   function formatNumbers(count = "") {
     if (count >= 1000 && count < 1000000) {
       return (count / 1000).toFixed(1) + "k";
@@ -25,7 +27,7 @@ const VerticalCard = ({ video }) => {
   }
   
   return (
-    <div className="grid grid-cols-5 gap-3 cursor-pointer mb-4 w-full">
+    <div className="grid grid-cols-5 gap-3 cursor-pointer mb-4 w-full" onClick={() => navigate(`/watch/${video._id}`)}>
       <div className="col-span-2 h-32 relative">
           <img
             src={video?.thumbnail}
@@ -39,7 +41,7 @@ const VerticalCard = ({ video }) => {
       <div className="col-span-3 flex flex-col">
         <h1 className="font-bold">{video.title}</h1>
         <p className="text-md">{video.owner?.username} <span>• {views} views</span> </p>
-        <p className="truncate w-[80%] text-wrap text-sm mt-2">{truncateText(video.description, 90)}</p>
+        <p className="truncate w-[80%] text-wrap text-sm mt-2">{truncateText(video?.description, 90)}</p>
       </div>
       
     </div>

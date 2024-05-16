@@ -25,15 +25,21 @@ const LikedVideo = () => {
   console.log(videos);
 
   return (
-    <div>
+    <div className="mt-4">
+      <h1>Your Liked Videos: </h1>
       {loading ? (
         <Loader />
       ) : (
-        <div className="w-full mt-6 mb-7 p-3 flex items-center justify-center sm:justify-normal lg:justify-start sm:gap-2 flex-wrap">
-          {videos.map((vid) => (
-            <VerticalCard key={vid._id} video={vid.likedVideo[0]} />
-          ))}
-        </div>
+        <div className="w-full grid grid-cols-10 mt-4">
+            <div className="col-span-5">
+              {videos.map((vid) => (
+                <VerticalCard key={vid._id} video={vid.likedVideo[0]} />
+              ))}
+            </div>
+            <div className="col-span-5">
+              Manage the history of user
+            </div>
+          </div>
       )}
     </div>
   );

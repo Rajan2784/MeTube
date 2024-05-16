@@ -25,7 +25,6 @@ const VideoTitleAndOwnerDetails = ({ videoId, video, setVideo, subscribers }) =>
           withCredentials: true,
         }
       );
-      console.log(like.data);
     } catch (error) {
       // If there's an error, revert back the UI changes
       setVideo((prevVid) => ({
